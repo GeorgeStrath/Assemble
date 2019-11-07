@@ -1,15 +1,12 @@
 #!/bin/bash
 
-echo What is the name of  your asm file add asm extension?
 
-read path
+pathtofile="$1"
 
-
-
-filename=$(basename -- $path)
+filename=$(basename -- $pathtofile)
 filename="${filename%.*}"
 
-nasm -f elf $path
+nasm -f elf $pathtofile
 
 ld -m elf_i386 -s -o $filename $filename.o
 
